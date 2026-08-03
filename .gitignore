@@ -1,0 +1,21 @@
+# ---- .NET ----
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+project.lock.json
+artifacts/
+
+# ---- JetBrains Rider / IDEs ----
+.idea/
+.vs/
+*.DotSettings.user
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Logs ----
+*.log
