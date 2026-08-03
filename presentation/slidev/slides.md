@@ -369,25 +369,26 @@ await collection.SearchIndexes.CreateOneAsync(
     new CreateSearchIndexModel("vector_index",
         SearchIndexType.VectorSearch, indexDef));
 
-// Find the nearest movies to the query vector
-new BsonDocument("$vectorSearch", new BsonDocument {
-    { "index", "vector_index" }, { "path", "Embedding" },
-    { "queryVector", queryVector },
-    { "numCandidates", 50 }, { "limit", 5 } });
+// Find the nearest movies to the query vector (type-safe pipeline)
+var searchResults = await collection.Aggregate()
+    .VectorSearch(
+        field: x => x.Embedding,   // The vector field in your document
+        queryVector: queryVector,  // Your query vector coordinates
+        limit: 5,                  // Number of top matches to return
+        options: new() { IndexName = "vector_index" })
+    .ToListAsync();
 ```
 
 <!--
-Now the MongoDB side, which is also just a little bit of setup plus one pipeline stage.
+Now the MongoDB side, which is also just a little bit of setup plus one query.
 
 At the top, we create the vector search index. We tell MongoDB which field holds the vector, that it has 768 dimensions, and that we want to compare vectors using cosine similarity. We only do this once.
 
-At the bottom is the actual search. It is a normal aggregation pipeline with a vector search stage inside it.
+At the bottom is the actual search. It is a normal aggregation pipeline, but using the driver's strongly typed VectorSearch stage, so there is no hand assembled BSON.
 
-We give that stage the name of the index, the field that holds the embedding, and the query vector, which is simply the embedding of whatever the user typed.
+We give it the field that holds the embedding, expressed as a simple lambda, the query vector, which is just the embedding of whatever the user typed, a limit for how many results we want back, and the options telling it which index to use.
 
-Number of candidates controls how wide the approximate search casts its net before narrowing down. Limit is how many results we want back, which here is the top five.
-
-We can also pull out a similarity score for each result, so we can show the audience how strong each match actually is.
+Because it is type safe against our Movie class, the compiler checks the field name for us, and it reads almost like plain English.
 -->
 
 ---

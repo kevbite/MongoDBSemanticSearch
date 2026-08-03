@@ -80,24 +80,20 @@ class MovieRepository
 
     public async Task<List<MovieSearchResult>> SearchAsync(float[] queryEmbedding, int limit = 5)
     {
-        var queryVector = new BsonArray(queryEmbedding.Select(f => (BsonValue)(double)f));
-
-        var pipeline = new BsonDocument[]
+        var options = new VectorSearchOptions<Movie>
         {
-            new("$vectorSearch", new BsonDocument
-            {
-                { "index", "vector_index" },
-                { "path", "Embedding" },
-                { "queryVector", queryVector },
-                { "numCandidates", Math.Max(50, limit * 10) },
-                { "limit", limit }
-            }),
-            new("$addFields", new BsonDocument("Score",
-                new BsonDocument("$meta", "vectorSearchScore")))
+            IndexName = "vector_index",
+            NumberOfCandidates = Math.Max(50, limit * 10)
         };
 
-        return await _collection
-            .Aggregate(PipelineDefinition<Movie, MovieSearchResult>.Create(pipeline))
+        return await _collection.Aggregate()
+            .VectorSearch(
+                field: x => x.Embedding,      // The vector field in your document
+                queryVector: queryEmbedding,  // Your query vector coordinates
+                limit: limit,                 // Number of top matches to return
+                options: options)
+            .AppendStage<MovieSearchResult>(new BsonDocument("$addFields",
+                new BsonDocument("Score", new BsonDocument("$meta", "vectorSearchScore"))))
             .ToListAsync();
     }
 }
