@@ -1,0 +1,20 @@
+services:
+  mongo:
+    image: mongodb/mongodb-atlas-local
+    container_name: semantic_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - atlas_data:/data/db
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: semantic_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  atlas_data:
+  ollama_data:
