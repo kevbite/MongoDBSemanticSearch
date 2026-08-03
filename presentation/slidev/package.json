@@ -1,0 +1,19 @@
+{
+  "name": "semantic-search-mongodb-slidev",
+  "type": "module",
+  "private": true,
+  "description": "Semantic Search & MongoDB lightning talk, built with Slidev (no PowerPoint required).",
+  "scripts": {
+    "dev": "slidev --open",
+    "start": "slidev --port 3030",
+    "serve": "slidev --port 3030 --remote",
+    "build": "slidev build --base /",
+    "export": "slidev export",
+    "export-pdf": "slidev export --format pdf --output ../SemanticSearch-MongoDB.pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.50.0",
+    "@slidev/theme-default": "^0.25.0",
+    "vue": "^3.4.0"
+  }
+}

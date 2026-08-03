@@ -1,0 +1,168 @@
+/* ------------------------------------------------------------------ *
+ * MongoDB-branded Slidev theme for the "Semantic Search & MongoDB"
+ * lightning talk. Colours are taken straight from the MongoDB User
+ * Groups PowerPoint template theme (theme1.xml).
+ * ------------------------------------------------------------------ */
+
+:root {
+  --mdb-navy: #001e2b;
+  --mdb-green: #00ed64;
+  --mdb-green-dark: #00684a;
+  --mdb-green-deep: #023430;
+  --mdb-mint: #e3fcf7;
+  --mdb-mint-soft: #f4fbf7;
+  --mdb-ink: #023430;
+  --mdb-ink-soft: #4a6a5f;
+  --mdb-lilac: #f9ebff;
+  --mdb-lime: #e9ff99;
+  --mdb-cyan: #00d2ff;
+  --mdb-blue: #006eff;
+
+  --slidev-theme-primary: var(--mdb-green-dark);
+}
+
+/* ---- base typography ---- */
+.slidev-layout {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: var(--mdb-ink);
+  background: #ffffff;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: var(--mdb-green-deep);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.slidev-layout h1 { font-size: 2.6rem; line-height: 1.1; }
+.slidev-layout h2 { font-size: 1.9rem; }
+
+.slidev-layout a { color: var(--mdb-green-dark); }
+.slidev-layout strong { color: var(--mdb-green-deep); }
+
+/* accent rule under content titles */
+.slidev-layout.default h1::after,
+.slidev-layout.image-right h1::after,
+.slidev-layout.image-left h1::after {
+  content: '';
+  display: block;
+  width: 84px;
+  height: 6px;
+  margin-top: 0.55rem;
+  border-radius: 999px;
+  background: var(--mdb-green);
+}
+
+/* ---- bullet lists ---- */
+.slidev-layout ul { list-style: none; padding-left: 0; }
+.slidev-layout ul > li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin: 0.7rem 0;
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+.slidev-layout ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 3px;
+  background: var(--mdb-green);
+  transform: rotate(45deg);
+}
+
+/* ---- code blocks ---- */
+.slidev-layout pre,
+.slidev-layout .slidev-code-wrapper pre {
+  background: var(--mdb-navy) !important;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 237, 100, 0.25);
+  font-size: 0.98rem;
+}
+.slidev-layout code { font-family: 'JetBrains Mono', 'Cascadia Code', monospace; }
+
+/* ------------------------------------------------------------------ *
+ * Dark slides (cover / section / statement) on MongoDB navy
+ * ------------------------------------------------------------------ */
+.slidev-layout.cover,
+.slidev-layout.section,
+.slidev-layout.statement,
+.slidev-layout.end,
+.slidev-layout.intro {
+  background: radial-gradient(120% 120% at 80% 0%, #012b34 0%, var(--mdb-navy) 60%);
+  color: #ffffff;
+}
+
+.slidev-layout.cover h1,
+.slidev-layout.section h1,
+.slidev-layout.statement h1,
+.slidev-layout.end h1,
+.slidev-layout.intro h1 {
+  color: #ffffff;
+}
+
+.slidev-layout.section h1 { font-size: 3rem; }
+.slidev-layout.section h1::after {
+  content: '';
+  display: block;
+  width: 110px;
+  height: 7px;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: var(--mdb-green);
+}
+
+.slidev-layout.statement h1 {
+  font-size: 3.2rem;
+  line-height: 1.08;
+  color: var(--mdb-green);
+}
+.slidev-layout.statement p {
+  color: #d9ede6;
+  font-size: 1.4rem;
+  max-width: 46ch;
+}
+
+/* ---- helper utility classes used inside slides ---- */
+.mdb-kicker {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(0, 237, 100, 0.16);
+  color: var(--mdb-green);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.mdb-diagram {
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(2, 52, 48, 0.14);
+  border: 1px solid var(--mdb-mint);
+}
+
+.mdb-card {
+  background: var(--mdb-mint-soft);
+  border: 1px solid var(--mdb-mint);
+  border-radius: 16px;
+  padding: 1.1rem 1.4rem;
+}
+
+/* ------------------------------------------------------------------ *
+ * Hide the "go to slide" dialog (#slidev-goto-dialog). Slidev leaves
+ * its autocomplete list docked to the side when the dialog is closed
+ * (the ".-top-20" state), which shows up as a stray sidebar.
+ * ------------------------------------------------------------------ */
+#slidev-goto-dialog.-top-20 {
+  overflow: hidden;
+  pointer-events: none;
+}
+#slidev-goto-dialog.-top-20 .autocomplete-list {
+  display: none !important;
+}
