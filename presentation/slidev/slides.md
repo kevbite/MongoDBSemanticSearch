@@ -2,7 +2,7 @@
 theme: default
 title: Semantic Search & MongoDB
 info: |
-  ## Semantic Search & MongoDB — Lightning Talk
+  ## Semantic Search & MongoDB, Lightning Talk
   Search by meaning, not by keywords. Embeddings, MongoDB Atlas Vector Search
   and automated embeddings with Voyage AI, with a local C# + Ollama demo.
 class: text-center
@@ -166,7 +166,7 @@ layout: default
 
 # Embeddings 101
 
-- A model turns text into a **vector** — a list of numbers
+- A model turns text into a **vector**: a list of numbers
 - Similar meaning → vectors that sit **close together**
 - Different meaning → vectors **far apart**
 - Demo uses <span class="font-mono">nomic-embed-text</span> (768 dimensions) via Ollama
@@ -275,7 +275,7 @@ Under the hood it uses approximate nearest neighbour search. That trades a tiny 
 layout: default
 ---
 
-# One document — data + vector together
+# One document: data + vector together
 
 ```json
 {
@@ -290,7 +290,7 @@ layout: default
 ```
 
 <div class="mt-3 text-sm opacity-70">
-  The <span class="font-mono">Embedding</span> field is just a 768-number array on the same document — no separate vector store.
+  The <span class="font-mono">Embedding</span> field is just a 768-number array on the same document, with no separate vector store.
 </div>
 
 <!--
@@ -438,7 +438,7 @@ layout: default
 
 - **Voyage AI** = MongoDB's built-in embedding models
 - Atlas auto-embeds your text on write and on query
-- Store text, search with text — **no glue code**
+- Store text, search with text, with **no glue code**
 - No separate embedding service to run or scale
 
 <!--
@@ -481,7 +481,7 @@ Compare this to the demo earlier, where our own C# code had to call Ollama for e
 layout: default
 ---
 
-# Set it up in MongoDB (C#) — part 1: the index
+# Set it up in MongoDB (C#), part 1: the index
 
 ```csharp
 // Index the text field with AUTOMATED embedding.
@@ -514,23 +514,27 @@ One note for the talk. Automated embedding is a newer capability, so mention tha
 layout: default
 ---
 
-# Set it up in MongoDB (C#) — part 2: the query
+# Set it up in MongoDB (C#), part 2: the query
 
 ```csharp
 // Query with PLAIN TEXT.
 //   no queryVector, no call to an embedding model.
-new BsonDocument("$vectorSearch", new BsonDocument {
-    { "index", "auto_index" },
-    { "path", "Description" },
-    { "query", "a young wizard faces a dark lord" },
-    { "numCandidates", 100 },
-    { "limit", 5 } });
+var searchResults = await collection.Aggregate()
+    .AppendStage<Movie>(new BsonDocument("$vectorSearch", new BsonDocument {
+        { "index", "auto_index" },
+        { "path", "Description" },
+        { "query", "a young wizard faces a dark lord" },
+        { "numCandidates", 100 },
+        { "limit", 5 } }))
+    .ToListAsync();
 ```
 
 <!--
 This second slide is the query, and the interesting part is what is missing.
 
 There is no queryVector and no call to an embedding model. We simply pass our search text in the query field, and Atlas embeds it for us before running the search.
+
+We drop this straight onto the same fluent aggregate we used earlier, with AppendStage. Automated embedding is a newer capability, so there is no strongly typed VectorSearch helper for the text form yet. That is fine, we just express the one stage directly and it still reads cleanly.
 
 You still point path at the same Description field and reference the auto_index we just created.
 
@@ -601,7 +605,7 @@ class: text-center
 # Thank you!
 
 <div class="mt-6 opacity-80 text-lg">
-  Questions welcome — come grab me afterwards.
+  Questions welcome. Come grab me afterwards.
 </div>
 
 <div class="mt-8 text-sm opacity-70 leading-relaxed">
