@@ -27,7 +27,7 @@ const isDark = computed(() => {
     </svg>
     <span class="mdb-wordmark">MongoDB</span>
     <span class="mdb-sep">·</span>
-    <span class="mdb-talk">Semantic Search — Lightning Talk</span>
+    <span class="mdb-talk">Semantic Search, Lightning Talk</span>
     <span class="mdb-page">{{ $page }} / {{ $slidev.nav.total }}</span>
   </footer>
 </template>

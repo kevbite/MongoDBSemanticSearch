@@ -1,7 +1,7 @@
-# Semantic Search & MongoDB — Slidev deck
+# Semantic Search & MongoDB, Slidev deck
 
 The lightning-talk deck, rebuilt with [Slidev](https://sli.dev/) so it can be
-run locally in the browser — **no PowerPoint required**. It replaces the old
+run locally in the browser, with **no PowerPoint required**. It replaces the old
 C# `DeckBuilder` (ShapeCrawler) that generated a `.pptx`.
 
 The MongoDB branding (navy `#001E2B`, bright green `#00ED64`, dark green
@@ -33,8 +33,8 @@ Presenter view (speaker notes for every slide are included) is available at
 
 ## Structure
 
-- `slides.md` — the whole deck (content + speaker notes as `<!-- ... -->`).
-- `style.css` — MongoDB brand theme (auto-imported by Slidev).
-- `global-bottom.vue` — persistent MongoDB leaf + footer on every slide.
-- `public/` — images pulled from the original template
+- `slides.md`: the whole deck (content + speaker notes as `<!-- ... -->`).
+- `style.css`: MongoDB brand theme (auto-imported by Slidev).
+- `global-bottom.vue`: persistent MongoDB leaf + footer on every slide.
+- `public/`: images pulled from the original template
   (`avatar.png`, `vector-space.png`, `auto-embed.png`, brand blobs).

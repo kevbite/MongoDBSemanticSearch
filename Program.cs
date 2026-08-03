@@ -51,7 +51,7 @@ var movies = new Movie[]
         Description = "A young girl becomes trapped in a mysterious spirit world and must work in a bathhouse for supernatural beings to rescue her parents. A richly imaginative coming-of-age fairy tale." },
     new() { Title = "WALL-E", Genre = "Animation",
         Description = "A small waste-collecting robot left alone on a ruined Earth falls in love and embarks on a galaxy-spanning adventure. A tender fable about loneliness, consumerism, and the resilience of life." },
-    // Fantasy — the Harry Potter series
+    // Fantasy: the Harry Potter series
     new() { Title = "Harry Potter and the Philosopher's Stone", Genre = "Fantasy",
         Description = "An orphaned boy learns on his eleventh birthday that he is a wizard and is whisked away to Hogwarts School of Witchcraft and Wizardry. There he makes loyal friends, learns to fly a broomstick, and uncovers the truth about the night his parents died." },
     new() { Title = "Harry Potter and the Chamber of Secrets", Genre = "Fantasy",
@@ -83,7 +83,7 @@ var repo = new MovieRepository(db);
 
 if (!await repo.IsSeededAsync())
 {
-    Console.WriteLine($"First run — generating embeddings for {movies.Length} movies...");
+    Console.WriteLine($"First run: generating embeddings for {movies.Length} movies...");
     for (int i = 0; i < movies.Length; i++)
     {
         Console.Write($"  [{i + 1:D2}/{movies.Length}] {movies[i].Title}...");
