@@ -143,7 +143,7 @@ layout: default
 
 - Ranks results by conceptual similarity
 - Handles synonyms & paraphrases naturally
-- Resilient to typos and phrasing
+- Resilient to typos, phrasing & even different languages
 - Powered by **embeddings + vector search**
 
 <!--
