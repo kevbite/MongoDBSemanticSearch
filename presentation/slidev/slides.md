@@ -272,6 +272,38 @@ Under the hood it uses approximate nearest neighbour search. That trades a tiny 
 -->
 
 ---
+layout: default
+---
+
+# One document — data + vector together
+
+```json
+{
+  "_id": ObjectId("6520f1a3c3a4b2e1d8f90a12"),
+  "Title": "Harry Potter and the Philosopher's Stone",
+  "Genre": "Fantasy",
+  "Description": "An orphaned boy learns on his eleventh birthday
+    that he is a wizard and is whisked away to Hogwarts School of
+    Witchcraft and Wizardry...",
+  "Embedding": [0.021, -0.044, 0.118, -0.007, /* ...764 more */ ]
+}
+```
+
+<div class="mt-3 text-sm opacity-70">
+  The <span class="font-mono">Embedding</span> field is just a 768-number array on the same document — no separate vector store.
+</div>
+
+<!--
+Before we look at the code, here is what actually lands in the database, so the idea is concrete.
+
+This is a single MongoDB document for one film, Harry Potter and the Philosopher's Stone. Notice it has the everyday fields you would expect: a title, a genre, and a description.
+
+The important part is the last field, Embedding. That is the 768 number vector we generated from the description. I have only shown the first few numbers here, but in reality the array has 768 entries.
+
+The key thing to take away is that the vector sits right alongside the normal data, on the very same document. There is no separate vector database and no second system to keep in sync. Your data and its meaning live together, and that is exactly what lets MongoDB search across both at once.
+-->
+
+---
 layout: statement
 ---
 
