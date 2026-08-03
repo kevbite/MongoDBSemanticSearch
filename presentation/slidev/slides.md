@@ -546,6 +546,7 @@ layout: default
 # Where else semantic search shines
 
 - RAG & chatbots grounded in your own data
+- AI agent memory & long-term recall
 - Recommendations & related content
 - Deduplication & clustering of records
 - Image & multimodal search
@@ -555,6 +556,8 @@ layout: default
 Searching movies is really just one shape of this technique. The same nearest neighbour idea powers a lot of the things you are probably being asked to build right now.
 
 The big one today is retrieval augmented generation, often shortened to RAG. You use semantic search to find the most relevant pieces of your own data, and then you feed those pieces to a large language model, so its answers are grounded in your content instead of being made up.
+
+Closely related, and very much the buzzword of the moment, is AI memory. When an agent or chatbot needs to remember past conversations and facts, you embed those memories and store them, then semantically recall the most relevant ones to give the model long term memory. It is the same nearest neighbour trick powering agent memory.
 
 Recommendations and related content are really just find me items that are similar to this one, which is exactly nearest neighbours again.
 
