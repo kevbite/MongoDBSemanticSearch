@@ -126,6 +126,9 @@
   color: #d9ede6;
   font-size: 1.4rem;
   max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 /* ---- helper utility classes used inside slides ---- */
