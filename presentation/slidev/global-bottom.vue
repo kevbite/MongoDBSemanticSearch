@@ -47,13 +47,14 @@ const isDark = computed(() => {
   opacity: 0.9;
   pointer-events: none;
   z-index: 20;
+  transition: color 1s ease;
 }
 .mdb-leaf { width: 1.1rem; height: 1.1rem; }
-.mdb-wordmark { font-weight: 700; color: #023430; letter-spacing: 0.01em; }
+.mdb-wordmark { font-weight: 700; color: #023430; letter-spacing: 0.01em; transition: color 1s ease; }
 .mdb-sep { opacity: 0.5; }
 .mdb-talk { font-weight: 500; }
 .mdb-page { margin-left: auto; font-variant-numeric: tabular-nums; }
 
-.mdb-footer.is-dark { color: #9fb8ad; }
-.mdb-footer.is-dark .mdb-wordmark { color: #00ed64; }
+.mdb-footer.is-dark { color: #9fb8ad ; transition: color 1s ease; }
+.mdb-footer.is-dark .mdb-wordmark { color: #00ed64; transition: color 1s ease; }
 </style>
