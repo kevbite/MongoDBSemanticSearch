@@ -28,21 +28,22 @@ const isDark = computed(() => {
     <span class="mdb-wordmark">MongoDB</span>
     <span class="mdb-sep">·</span>
     <span class="mdb-talk">Semantic Search, Lightning Talk</span>
-    <span class="mdb-page">{{ $page }} / {{ $slidev.nav.total }}</span>
+    <span class="mdb-sep">·</span>
     <span class="mdb-socials">
       <a href="https://bsky.app/profile/kevsoft.net" target="_blank" class="mdb-social-link" title="Bluesky">
-        <!-- Bluesky butterfly icon -->
-        <svg viewBox="0 0 360 320" aria-hidden="true">
-          <path d="M180 142c-16-73-63-127-107-127C32 15 0 55 0 102c0 50 32 86 80 86 9 0 18-1 26-4-12 26-28 45-28 45s22-5 46-20c-1 4-2 9-2 13 0 49 35 78 58 78s58-29 58-78c0-4-1-9-2-13 24 15 46 20 46 20s-16-19-28-45c8 3 17 4 26 4 48 0 80-36 80-86C360 55 328 15 287 15 243 15 196 69 180 142Z"/>
+        <svg fill="none" viewBox="0 0 64 57" aria-hidden="true">
+          <path fill="currentColor" d="M13.873 3.805C21.21 9.332 29.103 20.537 32 26.55v15.882c0-.338-.13.044-.41.867-1.512 4.456-7.418 21.847-20.923 7.944-7.111-7.32-3.819-14.64 9.125-16.85-7.405 1.264-15.73-.825-18.014-9.015C1.12 23.022 0 8.51 0 6.55 0-3.268 8.579-.182 13.873 3.805ZM50.127 3.805C42.79 9.332 34.897 20.537 32 26.55v15.882c0-.338.13.044.41.867 1.512 4.456 7.418 21.847 20.923 7.944 7.111-7.32 3.819-14.64-9.125-16.85 7.405 1.264 15.73-.825 18.014-9.015C62.88 23.022 64 8.51 64 6.55c0-9.818-8.578-6.732-13.873-2.745Z"/>
         </svg>
+        <span>@kevsoft.net</span>
       </a>
       <a href="https://x.com/kev_bite" target="_blank" class="mdb-social-link" title="X">
-        <!-- X logo -->
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L2.16 2.25h6.961l4.263 5.633 5.86-5.633Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"/>
         </svg>
+        <span>@kev_bite</span>
       </a>
     </span>
+    <span class="mdb-page">{{ $page }} / {{ $slidev.nav.total }}</span>
   </footer>
 </template>
 
@@ -68,17 +69,18 @@ const isDark = computed(() => {
 .mdb-sep { opacity: 0.5; }
 .mdb-talk { font-weight: 500; }
 .mdb-page { margin-left: auto; font-variant-numeric: tabular-nums; }
-.mdb-socials { display: flex; align-items: center; gap: 0.4rem; pointer-events: all; }
+.mdb-socials { display: flex; align-items: center; gap: 0.75rem; pointer-events: all; }
 .mdb-social-link {
   display: flex;
   align-items: center;
+  gap: 0.25rem;
   color: inherit;
   opacity: 0.6;
   transition: opacity 0.2s, color 1s ease;
   text-decoration: none;
 }
 .mdb-social-link:hover { opacity: 1; }
-.mdb-social-link svg { width: 0.85rem; height: 0.85rem; fill: currentColor; }
+.mdb-social-link svg { width: 0.85rem; height: 0.85rem; fill: currentColor; flex-shrink: 0; }
 
 .mdb-footer.is-dark { color: #9fb8ad ; transition: color 1s ease; }
 .mdb-footer.is-dark .mdb-wordmark { color: #00ed64; transition: color 1s ease; }
