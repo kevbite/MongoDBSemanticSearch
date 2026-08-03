@@ -15,6 +15,20 @@ services:
     volumes:
       - ollama_data:/root/.ollama
 
+  # One-shot init: waits for Ollama, then pulls the embedding model so the app
+  # doesn't 404 on /api/embeddings the first time it runs on a fresh machine.
+  ollama-pull:
+    image: ollama/ollama:latest
+    container_name: semantic_ollama_pull
+    depends_on:
+      - ollama
+    environment:
+      OLLAMA_HOST: "http://ollama:11434"
+    entrypoint: >
+      sh -c "until ollama list >/dev/null 2>&1; do echo 'waiting for ollama...'; sleep 1; done;
+             ollama pull nomic-embed-text"
+    restart: "no"
+
 volumes:
   atlas_data:
   ollama_data:
